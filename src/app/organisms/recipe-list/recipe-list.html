@@ -1,1 +1,13 @@
-<p>recipe-list works!</p>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <!-- Utilizo recipe.id para "trackear" las recetas, esto mejora el rendimiento indicando un elemento que se comprobará en cada iteración para saber si "re-pintar" ese elemento -->
+    @for (recipe of recipes; track recipe.id) { 
+    <div class="col">
+        <app-recipe-card [recipe]="recipe" (deleteRequest)="handleDeleteRequest($event)">
+        </app-recipe-card>
+    </div>
+    } @empty {
+    <div class="col-12 alert alert-info">
+        No hay recetas disponibles. ¡Añade una!
+    </div>
+    }
+</div>
