@@ -1,1 +1,23 @@
-<p>recipe-card works!</p>
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title text-primary">{{ recipe.name }}</h5>
+
+        <h6 class="card-subtitle mb-2 text-muted">
+            Tiempo: {{ recipe.prepTimeMinutes }} minutos
+        </h6>
+
+        <p class="card-text mt-3">
+            <strong>Ingredientes:</strong>
+        </p>
+        <ul class="list-group list-group-flush mb-3">
+            @for (ingredient of recipe.ingredients; track ingredient) {
+            <li class="list-group-item p-1 border-0 bg-light">
+                - {{ ingredient }}
+            </li>
+            }
+        </ul>
+
+        <app-button [text]="'Eliminar Receta'" [colorClass]="'btn-danger btn-sm'" (clickEvent)="onDelete()">
+        </app-button>
+    </div>
+</div>
