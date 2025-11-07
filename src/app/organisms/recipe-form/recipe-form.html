@@ -1,1 +1,33 @@
-<p>recipe-form works!</p>
+<div class="card shadow-lg p-4 mb-5 bg-white rounded">
+    <h4 class="card-title text-center text-secondary mb-4">Añadir Nueva Receta</h4>
+
+    <!-- Sección para mostrar errores de validación -->
+    <div *ngIf="validationErrors.length > 0" class="alert alert-danger">
+        <ul class="mb-0">
+            <li *ngFor="let error of validationErrors">{{ error }}</li>
+        </ul>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+
+        <app-form-group [label]="'Nombre de la Receta'" [placeholder]="'Ej: Pizza Margarita'" [value]="newRecipe.name"
+            (valueChange)="updateName($event)">
+        </app-form-group>
+
+        <app-form-group [label]="'Ingredientes (separados por comas)'" [placeholder]="'Ej: tomate, queso, albahaca'"
+            [value]="newRecipe.ingredients" (valueChange)="updateIngredients($event)">
+        </app-form-group>
+
+        <app-form-group [label]="'Tiempo de Preparación (minutos)'" [type]="'number'" [placeholder]="'Ej: 30'"
+            [value]="newRecipe.prepTimeMinutes" (valueChange)="updatePrepTime($event)">
+        </app-form-group>
+
+        <div class="d-flex justify-content-between mt-4">
+            <app-button [text]="'Añadir Receta'" [colorClass]="'btn-success w-100 me-2'" (clickEvent)="onSubmit()">
+            </app-button>
+
+            <app-button [text]="'Limpiar'" [colorClass]="'btn-secondary w-100'" (clickEvent)="resetForm()">
+            </app-button>
+        </div>
+    </form>
+</div>
